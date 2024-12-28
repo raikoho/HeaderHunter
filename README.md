@@ -14,35 +14,67 @@ HTTP Header and Vulnerability Checker for multiple sites - is a Python script fo
 
 ---
 
-🖥️ Usage
+## 🖥️ Usage
 Basic Syntax:
 
-python check-headers.py [options] [urls...]
+```
+python check-headers.py [urls...] [options]
+```
 
 Options:
-Option	Description
--full	Show all headers and detected vulnerabilities.
--voln	Show only detected vulnerabilities.
--headers	Show all headers excluding cookies.
--cookie	Show only session cookies.
--f <file>	Read URLs from a file.
--o <file>	Save output to a text file.
+
+  -full	Show all headers and detected vulnerabilities.
+  -voln	Show only detected vulnerabilities.
+  -headers	Show all headers excluding cookies.
+  -cookie	Show only session cookies.
+    -f <file>	Read URLs from a file.
+    -o <file>	Save output to a text file.
 -h	Display help message.
 
-Examples:
+### Examples:
 
-    Check a single URL:
+#### Check a single URL:
 
+```
 python check-headers.py https://example.com
+```
 
-Check URLs from a file:
+#### Check URLs from a file:
 
+```
 python check-headers.py -f list.txt
+```
 
-Save results to a file:
+#### Save results to a file:
 
+```
 python check-headers.py -f list.txt -o output.txt
+```
 
-Display only vulnerabilities:
+#### Display only vulnerabilities:
 
+```
 python check-headers.py -f list.txt -voln
+```
+
+#### Display only cookies:
+
+```
+python check-headers.py https://example.com -cookie
+```
+
+## 🛡️ Detected Vulnerabilities
+
+    CORS Misconfigurations: Missing or overly permissive Access-Control-Allow-Origin.
+    CSRF Risks: Missing or misconfigured X-Frame-Options.
+    Clickjacking: Missing X-Frame-Options or too permissive values.
+    Web Cache Poisoning: Detected via X-Cache header.
+    SameSite Cookie Issues: Insecure SameSite cookie attributes.
+    Cookies Structure. JWT or Base64 etc.
+
+## Instaliation
+
+```
+git clone 
+pip install -r requirements.txt
+```
