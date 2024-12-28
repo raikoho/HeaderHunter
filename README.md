@@ -75,6 +75,8 @@ python check-headers.py https://example.com -cookie
 ## Instaliation
 
 ```
-git clone 
+git clone https://github.com/raikoho/HeaderHunter.git
+cd HeaderHunter
 pip install -r requirements.txt
+python3 check-headers.py
 ```
