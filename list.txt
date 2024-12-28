@@ -1,0 +1,11 @@
+https://help.com
+https://owasp.org/www-project-juice-shop/
+https://hello.com
+https://example.com
+https://dummy.com
+https://www.atom.com/name/Test
+http://itsecgames.com/
+https://test.com
+https://dvwa.co.uk
+https://testphp.vulnweb.com
+https://google-gruyere.appspot.com
