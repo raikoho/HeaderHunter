@@ -2,16 +2,13 @@ import requests
 import sys
 from colorama import Fore, Style, init
 
-# Ініціалізація colorama
 init(autoreset=True)
-
 def print_art():
     art = r"""
-     __      __             _       _             
-     \ \    / /__ _ _ _ ___| |_ ___| |__  ___ _ _ __
-      \ \/\/ / _ \ '_| / -_)  _/ -_) '_ \/ -_) '_/ _ \
-       \_/\_/  __/_| |_\___|\__\___|_.__/\___|_| \___/
-                                                  
+=-=05923-12-059-32=5-04-=3fdreu86446_)(-67p[
+-073=06=HTTP--/]=4565-34]dewty690-_95-H0e4(_
+w4p29384odfHEADER-0940\''45;32-320#FUe90rig0
+45678-CHECKER-567fcew=326971=]\'sa;k)48&^)eg
     """
     print(Fore.CYAN + art)
 
@@ -19,8 +16,6 @@ def check_headers(url):
     try:
         response = requests.get(url)
         headers = response.headers
-
-        # Заголовки, які ми хочемо перевірити
         checks = {
             "Host": headers.get("Host"),
             "X-Forwarded-Host": headers.get("X-Forwarded-Host"),
@@ -39,23 +34,23 @@ def check_headers(url):
 
         vulnerabilities = []
 
-        # Перевірка на CORS
+        # CORS
         if checks["Access-Control-Allow-Origin"] is None or checks["Access-Control-Allow-Origin"] == "*":
             vulnerabilities.append("CORS vulnerability may exist.")
 
-        # Перевірка на CSRF
+        # CSRF
         if checks["X-Frame-Options"] is None:
             vulnerabilities.append("Potential CSRF vulnerability (X-Frame-Options not set).")
 
-        # Перевірка на Clickjacking
+        # Clickjacking
         if checks["X-Frame-Options"] is None or "DENY" not in checks["X-Frame-Options"]:
             vulnerabilities.append("Potential Clickjacking vulnerability (X-Frame-Options not set or too permissive).")
 
-        # Перевірка на Web Cache Poisoning
+        # Web Cache Poisoning
         if checks["X-Cache"] is not None and "HIT" in checks["X-Cache"]:
             vulnerabilities.append("Potential Web Cache Poisoning (X-Cache HIT).")
 
-        # Перевірка на SameSite
+        # SameSite
         if checks["Set-Cookie"] and "SameSite=None" in checks["Set-Cookie"] and "Secure" not in checks["Set-Cookie"]:
             vulnerabilities.append("SameSite attribute may lead to CSRF if not set securely.")
 
@@ -87,8 +82,6 @@ def main():
     mode = None
     urls = []
     output_file = None
-
-    # Читання аргументів командного рядка
     i = 1
     while i < len(sys.argv):
         arg = sys.argv[i]
@@ -125,16 +118,16 @@ def main():
                 print(Fore.RED + "Filename cannot be empty.")
                 return
         else:
-            urls.append(arg)  # Додаємо URL напряму
+            urls.append(arg) 
         i += 1
 
-    # Перевірка, чи є URL
+    # is URL exist???)
     if not urls:
         print(Fore.RED + "No URLs provided.")
         return
 
     for url in urls:
-        url = url.strip()  # Обрізаємо пробіли
+        url = url.strip()
         checks, vulnerabilities = check_headers(url)
 
         if checks:
@@ -149,7 +142,7 @@ def main():
             elif mode == "-headers":
                 output_str = f"\nChecked URL: {url}\n"
                 for header, value in checks.items():
-                    if header != "Set-Cookie":  # Вигадуємо куки
+                    if header != "Set-Cookie":
                         output_str += f"{Fore.MAGENTA}{header}: {Fore.BLUE}{value}\n"
 
             elif mode == "-cookie":
@@ -169,8 +162,6 @@ def main():
                         output_str += Fore.RED + f"- {v}\n"
 
             print(output_str)
-
-            # Зберегти вихідні дані у файл, якщо зазначено
             if output_file:
                 save_to_file(url, checks, vulnerabilities, output_file)
 
