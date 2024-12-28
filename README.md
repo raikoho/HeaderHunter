@@ -24,11 +24,17 @@ python check-headers.py [urls...] [options]
 Options:
 
   -full	Show all headers and detected vulnerabilities.
+  
   -voln	Show only detected vulnerabilities.
+  
   -headers	Show all headers excluding cookies.
+  
   -cookie	Show only session cookies.
+  
     -f <file>	Read URLs from a file.
+    
     -o <file>	Save output to a text file.
+    
 -h	Display help message.
 
 ### Examples:
@@ -65,12 +71,12 @@ python check-headers.py https://example.com -cookie
 
 ## 🛡️ Detected Vulnerabilities
 
-    CORS Misconfigurations: Missing or overly permissive Access-Control-Allow-Origin.
-    CSRF Risks: Missing or misconfigured X-Frame-Options.
-    Clickjacking: Missing X-Frame-Options or too permissive values.
-    Web Cache Poisoning: Detected via X-Cache header.
-    SameSite Cookie Issues: Insecure SameSite cookie attributes.
-    Cookies Structure. JWT or Base64 etc.
+    **CORS Misconfigurations**: Missing or overly permissive Access-Control-Allow-Origin.
+    **CSRF Risks**: Missing or misconfigured X-Frame-Options.
+    **Clickjacking**: Missing X-Frame-Options or too permissive values.
+    **Web Cache Poisoning**: Detected via X-Cache header.
+    **SameSite Cookie Issues**: Insecure SameSite cookie attributes.
+    **Cookies Structure**. JWT or Base64 etc.
 
 ## Instaliation
 
