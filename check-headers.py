@@ -17,7 +17,6 @@ def check_headers(url):
         response = requests.get(url)
         headers = response.headers
         checks = {
-            "Host": headers.get("Host"),
             "X-Forwarded-Host": headers.get("X-Forwarded-Host"),
             "Origin": headers.get("Origin"),
             "Referer": headers.get("Referer"),
